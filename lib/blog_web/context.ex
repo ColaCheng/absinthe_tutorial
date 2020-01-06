@@ -34,11 +34,10 @@ defmodule BlogWeb.Context do
   defp authorize(_token) do
     Accounts.User
     |> first
-    |> Repo.one
+    |> Repo.one()
     |> case do
-         nil -> {:error, "No users available, have you run the seeds?"}
-         user -> {:ok, Map.put(user, :admin, true)}
-       end
+      nil -> {:error, "No users available, have you run the seeds?"}
+      user -> {:ok, Map.put(user, :admin, true)}
+    end
   end
-
 end
